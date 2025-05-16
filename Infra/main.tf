@@ -2,6 +2,15 @@ provider "aws" {
   region = "us-west-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "terraform-state-backend-vamsee"
+    key            = "terraform/parameter/statefile"
+    region         = "us-west-1"
+    encrypt        = true
+  }
+}
+
 module "kms" {
   source = "./modules/kms"
 }
